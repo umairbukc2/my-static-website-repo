@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test Bikes — Static Demo</title>
+  <style>
+    /* Simple reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;background:#f5f7fb;color:#0f1724}
+
+    /* Layout */
+    header{background:linear-gradient(90deg,#0ea5a3,#06b6d4);color:white;padding:1rem 2rem}
+    .container{max-width:1100px;margin:0 auto;padding:2rem}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{font-weight:700;letter-spacing:0.5px}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+
+    /* Hero */
+    .hero{display:flex;align-items:center;gap:2rem;padding:2rem 0}
+    .hero h1{font-size:2rem;margin-bottom:0.5rem}
+    .hero p{color:rgba(255,255,255,0.95);opacity:0.95}
+
+    /* Controls */
+    .controls{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:1.5rem 0}
+    .search{flex:1;min-width:200px}
+    input[type="search"]{width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid #d1d5db}
+    .filters{display:flex;gap:0.5rem}
+    .filters button{padding:0.5rem 0.8rem;border-radius:8px;border:1px solid #cbd5e1;background:white;cursor:pointer}
+    .filters button.active{background:#06b6d4;color:white;border-color:#06b6d4}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card{background:white;border-radius:12px;padding:0.8rem;box-shadow:0 6px 18px rgba(2,6,23,0.08);display:flex;flex-direction:column;overflow:hidden}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+    .card-body{padding:0.6rem 0.2rem;flex:1;display:flex;flex-direction:column;gap:0.5rem}
+    .title{font-weight:700}
+    .meta{color:#475569;font-size:0.9rem}
+    .price{margin-top:auto;font-weight:800;color:#0f1724}
+    .badge{display:inline-block;padding:0.25rem 0.5rem;border-radius:999px;background:#eef2ff;color:#4f46e5;font-weight:600;font-size:0.75rem}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      nav{flex-direction:column;align-items:flex-start}
+    }
+
+    /* Footer */
+    footer{margin-top:2rem;padding:1rem 0;color:#64748b;text-align:center}
+
+    /* tiny utility */
+    .muted{color:#64748b}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">TestBikes</div>
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#inventory">Inventory</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <h1>Find the right bike for testing</h1>
+          <p>Responsive static demo — browse sample bikes, filter by type, and search. Perfect for testing layouts and interactions.</p>
+        </div>
+        <div style="margin-left:auto;align-self:center">
+          <span class="badge">Static Demo</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="search">
+        <label class="muted" for="q">Search bikes</label>
+        <input id="q" type="search" placeholder="Search by name or spec..." />
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Bike filters">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="road">Road</button>
+        <button data-filter="mountain">Mountain</button>
+        <button data-filter="electric">Electric</button>
+      </div>
+    </section>
+
+    <section id="inventory" class="grid" aria-live="polite">
+
+      <!-- Card: each card has data-type for filtering -->
+      <article class="card" data-type="road">
+        <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=1200&q=60" alt="Road bike">
+        <div class="card-body">
+          <div class="title">Aurora Speedster</div>
+          <div class="meta">Carbon frame • 22-speed • 7.8kg</div>
+          <div class="price">$1,399</div>
+        </div>
+      </article>
+
+      <article class="card" data-type="mountain">
+        <img src="https://images.unsplash.com/photo-1519183071298-a2962be3bba6?auto=format&fit=crop&w=1200&q=60" alt="Mountain bike">
+        <div class="card-body">
+          <div class="title">TrailMaster 3000</div>
+          <div class="meta">Full suspension • 27.5" • Hydraulic brakes</div>
+          <div class="price">$1,899</div>
+        </div>
+      </article>
+
+      <article class="card" data-type="electric">
+        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1200&q=60" alt="Electric bike">
+        <div class="card-body">
+          <div class="title">VoltCruiser E-45</div>
+          <div class="meta">Range 70km • 250W motor • 48V battery</div>
+          <div class="price">$2,199</div>
+        </div>
+      </article>
+
+      <article class="card" data-type="road">
+        <img src="https://images.unsplash.com/photo-1472806112900-7f88f9b44f8b?auto=format&fit=crop&w=1200&q=60" alt="Road bike 2">
+        <div class="card-body">
+          <div class="title">Comet Aero</div>
+          <div class="meta">Aluminum • Disc brakes • 18-speed</div>
+          <div class="price">$849</div>
+        </div>
+      </article>
+
+      <article class="card" data-type="mountain">
+        <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1200&q=60" alt="Mountain bike 2">
+        <div class="card-body">
+          <div class="title">RockHopper Pro</div>
+          <div class="meta">Hardtail • 29" wheels • 12-speed</div>
+          <div class="price">$599</div>
+        </div>
+      </article>
+
+      <article class="card" data-type="electric">
+        <img src="https://images.unsplash.com/photo-1520975688523-11b4f7a4b9b2?auto=format&fit=crop&w=1200&q=60" alt="Electric bike 2">
+        <div class="card-body">
+          <div class="title">CityGlide E- commuter</div>
+          <div class="meta">Step-through • 60km range • Integrated lights</div>
+          <div class="price">$1,299</div>
+        </div>
+      </article>
+
+    </section>
+
+    <footer id="contact">
+      <p>TestBikes — static demo site for layout and interaction testing. Built with plain HTML/CSS and a tiny JS filter.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Tiny JS: filter and search
+    const buttons = document.querySelectorAll('.filters button');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const search = document.getElementById('q');
+
+    function applyFilter(type){
+      cards.forEach(card => {
+        const t = card.getAttribute('data-type');
+        if(type === 'all' || t === type){
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        buttons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.filter);
+        search.value = '';
+      });
+    });
+
+    search.addEventListener('input', ()=>{
+      const q = search.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const txt = (card.querySelector('.title').textContent + ' ' + card.querySelector('.meta').textContent).toLowerCase();
+        const visible = txt.includes(q);
+        card.style.display = visible ? '' : 'none';
+      });
+      // reset filter buttons visual when search used
+      buttons.forEach(b=>b.classList.remove('active'));
+    });
+
+    // Accessibility: keyboard filter (Enter to activate)
+    buttons.forEach(b=>b.addEventListener('keydown', e=>{ if(e.key === 'Enter') b.click(); }));
+  </script>
+</body>
+</html>
